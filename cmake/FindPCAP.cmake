@@ -35,7 +35,7 @@ find_library(PCAP_LIBRARY
 )
 else ()
 find_library(PCAP_LIBRARY
-    NAMES libwpcap
+    NAMES libpcap.a
     HINTS ${PCAP_ROOT_DIR}/Lib
 )
 endif ()
