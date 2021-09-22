@@ -30,10 +30,16 @@ int main(int argc, char* argv[])
 		if (d->name) {
 			printf("name: %s\n", d->name);
 		}
-		
+
+		struct pcap_addr* cur_addr = NULL;
 		if (d->addresses) {
-			const auto z = ((struct sockaddr_in*)d->addresses->addr)->sin_addr;
-			printf("address %s\n", inet_ntoa(z));
+			cur_addr = d->addresses;
+			while (cur_addr != NULL)
+			{
+				const auto z = ((struct sockaddr_in*)cur_addr->addr)->sin_addr;
+				printf("address %s\n", inet_ntoa(z));
+				cur_addr = cur_addr->next;
+			}
 		}
 
 		puts("");
