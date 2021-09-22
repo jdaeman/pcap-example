@@ -24,10 +24,18 @@ int main(int argc, char* argv[])
 	/* Print the list */
 	for (d = alldevs; d != NULL; d = d->next)
 	{
-		printf("desc %s\n", d->description);
-		printf("name %s\n", d->name);
-		const auto z = ((struct sockaddr_in*)d->addresses->addr)->sin_addr;
-		printf("address %s\n", inet_ntoa(z));
+		if (d->description) {
+			printf("desc: %s\n", d->description);
+		}
+		if (d->name) {
+			printf("name: %s\n", d->name);
+		}
+		
+		if (d->addresses) {
+			const auto z = ((struct sockaddr_in*)d->addresses->addr)->sin_addr;
+			printf("address %s\n", inet_ntoa(z));
+		}
+
 		puts("");
 	}
 
