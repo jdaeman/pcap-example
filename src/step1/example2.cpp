@@ -59,7 +59,7 @@ int main(int argc, char** argv)
     else {
         adhandle = pcap_open_live(d->name, 65536, 1, 1000, errbuf);
         if (adhandle == NULL) {
-            printf("pcap_open_live error %s\n", d->name);
+            printf("pcap_open_live error %s\n", errbuf);
             pcap_freealldevs(alldevs);
             return -1;
         }
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
         std::thread th([&adhandle]() {
             std::this_thread::sleep_for(std::chrono::seconds(5));
             pcap_breakloop(adhandle);
-            printf("Execute: pcap_breakloop()");
+            printf("Execute: pcap_breakloop()\n");
         });
 
         printf("Start: packet capture\n");

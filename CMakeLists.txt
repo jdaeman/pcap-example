@@ -14,9 +14,11 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 project(pcap-example C CXX)
 
 find_package(PCAP REQUIRED)
+find_package(Threads REQUIRED)
 
 message(STATUS "pcap include " ${PCAP_INCLUDE_DIR})
 message(STATUS "pcap lib " ${PCAP_LIBRARY})
+message(STATUS "thread " ${CMAKE_THREAD_LIBS_INIT})
 
 include_directories(SYSTEM ${PCAP_INCLUDE_DIR})
 
@@ -27,7 +29,7 @@ target_link_libraries(step1-1 ws2_32.lib)
 endif()
 
 add_executable(step1-2 src/step1/example2.cpp)
-target_link_libraries(step1-2 ${PCAP_LIBRARY})
+target_link_libraries(step1-2 ${PCAP_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
 if (WIN32)
 target_link_libraries(step1-2 ws2_32.lib)
 endif()
