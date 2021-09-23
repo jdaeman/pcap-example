@@ -1,3 +1,5 @@
+#include <pcap.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #ifdef WIN32
@@ -7,8 +9,6 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #endif
-
-#include <pcap.h>
 
 int main(int argc, char* argv[])
 {
@@ -44,9 +44,6 @@ int main(int argc, char* argv[])
 
 		puts("");
 	}
-
-	// GetAdaptersAddresses
-	// https://gist.github.com/yoggy/1241986
 
 	pcap_freealldevs(alldevs);
 	return 0;
